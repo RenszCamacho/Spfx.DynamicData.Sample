@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-dynamic-data-sample-client-side-solution",
+    "id": "b2b3e6b8-92d4-4af7-9967-3d0402acb0a0",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "spfx-dynamic-data-sample description"
+      },
+      "longDescription": {
+        "default": "spfx-dynamic-data-sample description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "spfx-dynamic-data-sample Feature",
+        "description": "The feature that activates elements of the spfx-dynamic-data-sample solution.",
+        "id": "4a9e27ce-2d8f-4407-a0d8-3a392a9a88ec",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-dynamic-data-sample.sppkg"
+  }
+}
