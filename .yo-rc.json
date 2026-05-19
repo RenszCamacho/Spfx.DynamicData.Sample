@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "useGulp": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.22.3",
+    "sdksVersions": {},
+    "version": "1.23.0",
+    "libraryName": "spfx-dynamic-data-sample",
+    "libraryId": "96fa31e0-ca76-403f-b075-c6248c1085c9",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "spfx-dynamic-data-sample",
+    "solutionShortDescription": "spfx-dynamic-data-sample description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
