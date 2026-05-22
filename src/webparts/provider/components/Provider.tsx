@@ -1,10 +1,14 @@
 import * as React from "react";
+
 import styles from "./Provider.module.scss";
+
 import type { IProviderProps } from "./IProviderProps";
+
 import { escape } from "@microsoft/sp-lodash-subset";
+import { Stack, Text } from "@fluentui/react";
+
 import welcomeDark from "../assets/welcome-dark.png";
 import welcomeLight from "../assets/welcome-light.png";
-import { Stack, Text } from "@fluentui/react";
 
 const Provider = ({
   description,
