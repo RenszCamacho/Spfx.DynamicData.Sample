@@ -1,28 +1,25 @@
-import { useState, useEffect } from 'react';
-import type { DynamicProperty } from '@microsoft/sp-component-base';
-import type { IProduct } from '../../../models';
+import { useState, useEffect } from "react";
+import type { DynamicProperty } from "@microsoft/sp-component-base";
+import type { IProduct } from "../../../models";
 
 export interface IUseConsumerReturn {
-  products: IProduct[];
-  productCount: number;
   selectedProduct: IProduct | undefined;
-  loading: boolean;
 }
 
 export function useConsumer(
-  dynamicPropertyValue: DynamicProperty<IProduct[]>
+  dynamicPropertyValue: DynamicProperty<IProduct>,
 ): IUseConsumerReturn {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [selectedProduct, setSelectedProduct] = useState<
+    IProduct | undefined
+  >();
 
   useEffect(() => {
     const value = dynamicPropertyValue.tryGetValue();
-    setProducts(value ?? []);
-    setLoading(false);
+    setSelectedProduct(value);
 
     const onPropertyChanged = (): void => {
       const updated = dynamicPropertyValue.tryGetValue();
-      setProducts(updated ?? []);
+      setSelectedProduct(updated);
     };
 
     dynamicPropertyValue.register(onPropertyChanged);
@@ -32,15 +29,5 @@ export function useConsumer(
     };
   }, [dynamicPropertyValue]);
 
-  const productCount: number = products.length;
-  const selectedProduct: IProduct | undefined = products.length > 0
-    ? products[0]
-    : undefined;
-
-  return {
-    products,
-    productCount,
-    selectedProduct,
-    loading,
-  };
+  return { selectedProduct };
 }

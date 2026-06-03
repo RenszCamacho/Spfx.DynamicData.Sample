@@ -15,7 +15,7 @@ import { IConsumerProps } from "./components/IConsumerProps";
 import type { IProduct } from "../../models";
 
 export interface IConsumerWebPartProps {
-  products: DynamicProperty<IProduct[]>;
+  productoSeleccionado: DynamicProperty<IProduct>;
 }
 
 export default class ConsumerWebPart extends BaseClientSideWebPart<IConsumerWebPartProps> {
@@ -23,7 +23,7 @@ export default class ConsumerWebPart extends BaseClientSideWebPart<IConsumerWebP
     const element: React.ReactElement<IConsumerProps> = React.createElement(
       Consumer,
       {
-        dynamicProperty: this.properties.products,
+        productoSeleccionado: this.properties.productoSeleccionado,
       },
     );
 
@@ -49,7 +49,7 @@ export default class ConsumerWebPart extends BaseClientSideWebPart<IConsumerWebP
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneDynamicField("products", {
+                PropertyPaneDynamicField("productoSeleccionado", {
                   label: strings.DynamicFieldLabel,
                 }),
               ],
