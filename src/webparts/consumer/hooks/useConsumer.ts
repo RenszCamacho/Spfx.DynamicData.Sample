@@ -7,13 +7,18 @@ export interface IUseConsumerReturn {
 }
 
 export function useConsumer(
-  dynamicPropertyValue: DynamicProperty<IProduct>,
+  dynamicPropertyValue: DynamicProperty<IProduct> | undefined,
 ): IUseConsumerReturn {
   const [selectedProduct, setSelectedProduct] = useState<
     IProduct | undefined
   >();
 
   useEffect(() => {
+    if (!dynamicPropertyValue) {
+      setSelectedProduct(undefined);
+      return;
+    }
+
     const value = dynamicPropertyValue.tryGetValue();
     setSelectedProduct(value);
 
