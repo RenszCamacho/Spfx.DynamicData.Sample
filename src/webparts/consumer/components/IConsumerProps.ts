@@ -1,8 +1,6 @@
-import type { IProduct } from '../../../models';
+import type { DynamicProperty } from "@microsoft/sp-component-base";
+import type { IProduct } from "../../../models";
 
 export interface IConsumerProps {
-  products: IProduct[];
-  productCount: number;
-  selectedProduct: IProduct | undefined;
-  loading: boolean;
+  dynamicProperty: DynamicProperty<IProduct[]>;
 }

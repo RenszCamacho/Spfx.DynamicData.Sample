@@ -1,31 +1,30 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import * as React from "react";
+import * as ReactDom from "react-dom";
+
+import { Version } from "@microsoft/sp-core-library";
 import {
   type IPropertyPaneConfiguration,
-  PropertyPaneDynamicField
-} from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { type DynamicProperty } from '@microsoft/sp-component-base';
+  PropertyPaneDynamicField,
+} from "@microsoft/sp-property-pane";
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { type DynamicProperty } from "@microsoft/sp-component-base";
 
-import * as strings from 'ConsumerWebPartStrings';
-import { Consumer } from './components/Consumer';
-import { IConsumerProps } from './components/IConsumerProps';
-import { useConsumer } from './hooks/useConsumer';
-import type { IProduct } from '../../models';
+import * as strings from "ConsumerWebPartStrings";
+import { Consumer } from "./components/Consumer";
+import { IConsumerProps } from "./components/IConsumerProps";
+import type { IProduct } from "../../models";
 
 export interface IConsumerWebPartProps {
   products: DynamicProperty<IProduct[]>;
 }
 
 export default class ConsumerWebPart extends BaseClientSideWebPart<IConsumerWebPartProps> {
-
   public render(): void {
-    const hookResult = useConsumer(this.properties.products);
-
     const element: React.ReactElement<IConsumerProps> = React.createElement(
       Consumer,
-      hookResult
+      {
+        dynamicProperty: this.properties.products,
+      },
     );
 
     ReactDom.render(element, this.domElement);
@@ -36,7 +35,7 @@ export default class ConsumerWebPart extends BaseClientSideWebPart<IConsumerWebP
   }
 
   protected get dataVersion(): Version {
-    return Version.parse('1.0');
+    return Version.parse("1.0");
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -44,20 +43,20 @@ export default class ConsumerWebPart extends BaseClientSideWebPart<IConsumerWebP
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: strings.PropertyPaneDescription,
           },
           groups: [
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneDynamicField('products', {
-                  label: strings.DynamicFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+                PropertyPaneDynamicField("products", {
+                  label: strings.DynamicFieldLabel,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }
