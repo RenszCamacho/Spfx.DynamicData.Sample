@@ -10,25 +10,24 @@
   }
 }
 
-.welcome {
-  text-align: center;
-}
-
-.welcomeImage {
+.productTable {
   width: 100%;
-  max-width: 420px;
+  border-collapse: collapse;
+  margin-top: 0.5em;
+
+  th, td {
+    text-align: left;
+    padding: 0.5em;
+    border-bottom: 1px solid "[theme:neutralLight, default:#edebe9]";
+    border-bottom: 1px solid var(--neutralLight);
+  }
+
+  th {
+    font-weight: 600;
+  }
 }
 
-.links {
-  a {
-    text-decoration: none;
-    color: "[theme:link, default:#03787c]";
-    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
-
-    &:hover {
-      text-decoration: underline;
-      color: "[theme:linkHovered, default: #014446]";
-      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
-    }
-  }
+.selectedRow {
+  background-color: "[theme:themeLighter, default:#c7e0f4]";
+  background-color: var(--themeLighter);
 }

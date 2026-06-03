@@ -21,8 +21,6 @@
     "title": { "default": "Consumer" },
     "description": { "default": "Consumer description" },
     "officeFabricIconFontName": "Page",
-    "properties": {
-      "description": "Consumer"
-    }
+    "properties": {}
   }]
 }

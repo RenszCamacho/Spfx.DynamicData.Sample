@@ -1,7 +1,8 @@
+import type { IProduct } from '../../../models';
+
 export interface IConsumerProps {
-  description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
-  hasTeamsContext: boolean;
-  userDisplayName: string;
+  products: IProduct[];
+  productCount: number;
+  selectedProduct: IProduct | undefined;
+  loading: boolean;
 }
