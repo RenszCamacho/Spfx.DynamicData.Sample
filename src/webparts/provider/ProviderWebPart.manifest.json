@@ -20,7 +20,7 @@
     "group": { "default": "Advanced" },
     "title": { "default": "Provider" },
     "description": { "default": "Provider description" },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "Database",
     "properties": {
       "description": "Provider"
     }

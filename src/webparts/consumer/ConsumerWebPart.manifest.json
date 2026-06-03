@@ -20,7 +20,7 @@
     "group": { "default": "Advanced" },
     "title": { "default": "Consumer" },
     "description": { "default": "Consumer description" },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "ViewAll",
     "properties": {}
   }]
 }
