@@ -1,7 +1,8 @@
+import { ServiceScope } from "@microsoft/sp-core-library";
+import type { IProduct } from "../../../models";
+
 export interface IProviderProps {
-  description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
-  hasTeamsContext: boolean;
-  userDisplayName: string;
+  serviceScope: ServiceScope;
+  onProductsLoaded: (products: IProduct[]) => void;
+  onProductSelected: (product: IProduct | undefined) => void;
 }

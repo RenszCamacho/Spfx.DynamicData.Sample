@@ -3,42 +3,121 @@ import * as React from "react";
 import styles from "./Provider.module.scss";
 
 import type { IProviderProps } from "./IProviderProps";
+import { useProducts } from "../../../hooks/useProducts";
 
-import { Stack, Text } from "@fluentui/react";
-import { escape } from "@microsoft/sp-lodash-subset";
-
-import welcomeDark from "../assets/welcome-dark.png";
-import welcomeLight from "../assets/welcome-light.png";
+import {
+  DetailsList,
+  DetailsListLayoutMode,
+  SelectionMode,
+  type IColumn,
+  Spinner,
+  SpinnerSize,
+  Text,
+  Stack,
+} from "@fluentui/react";
+import type { IProduct } from "../../../models";
 
 const Provider = ({
-  description,
-  isDarkTheme,
-  environmentMessage,
-  hasTeamsContext,
-  userDisplayName,
+  serviceScope,
+  onProductsLoaded,
+  onProductSelected,
 }: IProviderProps): JSX.Element => {
-  return (
-    <Stack
-      as={"section"}
-      className={`${styles.provider} ${hasTeamsContext ? styles.teams : ""}`}
-    >
-      <Stack className={styles.welcome}>
-        <img
-          alt=""
-          src={isDarkTheme ? welcomeDark : welcomeLight}
-          className={styles.welcomeImage}
-        />
+  const { products, loading, error, selectProduct } =
+    useProducts(serviceScope);
 
-        <Text as={"h2"}>Well done, {escape(userDisplayName)}!</Text>
+  // Notify parent when products change (for DynamicData state)
+  React.useEffect(() => {
+    onProductsLoaded(products);
+  }, [products, onProductsLoaded]);
 
-        <Text as={"p"}>{environmentMessage}</Text>
+  const handleProductSelect = React.useCallback(
+    (product: IProduct | undefined): void => {
+      selectProduct(product);
+      onProductSelected(product);
+    },
+    [selectProduct, onProductSelected],
+  );
 
-        <Text as={"p"}>
-          Web part property value: <strong>{escape(description)}</strong>
-        </Text>
+  const columns: IColumn[] = React.useMemo(
+    () => [
+      {
+        key: "colId",
+        name: "ID",
+        fieldName: "Id",
+        minWidth: 40,
+        maxWidth: 60,
+        isResizable: true,
+      },
+      {
+        key: "colTitle",
+        name: "Title",
+        fieldName: "Title",
+        minWidth: 150,
+        isResizable: true,
+      },
+      {
+        key: "colPrecio",
+        name: "Precio",
+        fieldName: "Precio",
+        minWidth: 80,
+        maxWidth: 120,
+        isResizable: true,
+      },
+    ],
+    [],
+  );
+
+  if (loading) {
+    return (
+      <Stack
+        as="section"
+        className={styles.provider}
+        horizontalAlign="center"
+        verticalAlign="center"
+        tokens={{ padding: 20 }}
+      >
+        <Spinner size={SpinnerSize.medium} label="Loading products..." />
       </Stack>
+    );
+  }
+
+  if (error) {
+    return (
+      <Stack
+        as="section"
+        className={styles.provider}
+        tokens={{ padding: 20 }}
+      >
+        <Text as="h2" variant="large">
+          Error loading products
+        </Text>
+        <Text as="p">{error}</Text>
+      </Stack>
+    );
+  }
+
+  return (
+    <Stack as="section" className={styles.provider}>
+      <Text as="h2" variant="large" block>
+        Products
+      </Text>
+      <Text as="p" block>
+        {products.length} product(s) found
+      </Text>
+      <DetailsList
+        items={products}
+        columns={columns}
+        layoutMode={DetailsListLayoutMode.justified}
+        selectionMode={SelectionMode.single}
+        selectionPreservedOnEmptyClick={true}
+        onItemInvoked={(item: IProduct): void => {
+          handleProductSelect(item);
+        }}
+        ariaLabelForGrid="Products list"
+        checkButtonAriaLabel="select row"
+      />
     </Stack>
   );
 };
 
-export default Provider;
+export { Provider };

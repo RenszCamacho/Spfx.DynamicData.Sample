@@ -5,13 +5,8 @@ import { spfi, SPFI, SPFx } from "@pnp/sp";
 import { LogLevel, PnPLogging } from "@pnp/logging";
 
 import { IProductService } from "./IProductService";
-import {
-  IProduct,
-  IProductResponse,
-  PRODUCTOS_LIST,
-  COLUMN_TITLE,
-  COLUMN_PRECIO,
-} from "../models";
+import { IProduct, IProductResponse } from "../models";
+import { SHAREPOINT_LISTS, COLUMNS } from "../constants";
 
 import "@pnp/sp/webs";
 import "@pnp/sp/lists";
@@ -39,17 +34,16 @@ export class ProductService implements IProductService {
   public async getProducts(): Promise<IProduct[] | []> {
     try {
       const items = await this._sp.web.lists
-        .getByTitle(PRODUCTOS_LIST)
-        .items.select(COLUMN_TITLE, COLUMN_PRECIO)
-        .orderBy(COLUMN_TITLE)<IProductResponse[]>();
+        .getByTitle(SHAREPOINT_LISTS.PRODUCTOS)
+        .items.select(COLUMNS.TITLE, COLUMNS.PRECIO)
+        .orderBy(COLUMNS.TITLE)<IProductResponse[]>();
 
       return items.map(({ Id, Title, Precio }) => ({
         Id,
         Title,
         Precio,
       }));
-    } catch (error) {
-      console.error(error);
+    } catch {
       return [];
     }
   }

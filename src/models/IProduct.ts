@@ -1,12 +1,4 @@
 /**
- * SharePoint List Column Names
- * Centralized as constants to avoid magic strings throughout the codebase.
- */
-export const PRODUCTOS_LIST = "Productos";
-export const COLUMN_TITLE = "Title";
-export const COLUMN_PRECIO = "Precio";
-
-/**
  * Domain model — represents a Product in our business logic.
  *
  * WHY separate from ISharePointItem?
