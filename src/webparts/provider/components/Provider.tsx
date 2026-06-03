@@ -16,6 +16,7 @@ import {
   Stack,
 } from "@fluentui/react";
 import type { IProduct } from "../../../models";
+import { COLUMNS } from "../../../constants";
 
 const Provider = ({
   serviceScope,
@@ -51,14 +52,14 @@ const Provider = ({
       {
         key: "colTitle",
         name: "Title",
-        fieldName: "Title",
+        fieldName: COLUMNS.TITLE,
         minWidth: 150,
         isResizable: true,
       },
       {
         key: "colPrecio",
         name: "Precio",
-        fieldName: "Precio",
+        fieldName: COLUMNS.PRECIO,
         minWidth: 80,
         maxWidth: 120,
         isResizable: true,
