@@ -36,5 +36,6 @@ obj
 
 # Styles Generated Code
 *.scss.ts
-# Local Pi runtime state
+# Agent runtime state
 .atl/
+.pi/
