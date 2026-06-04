@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "marcusrbrown/systematic",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "71899e55d1bb1c3e266d31c8a18b9736f2264dd9cda134b212e62a1dea4c9fb1"
+    }
+  }
+}
