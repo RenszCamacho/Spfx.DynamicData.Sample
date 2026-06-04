@@ -3,7 +3,7 @@
   "solution": {
     "name": "spfx-dynamic-data-sample-client-side-solution",
     "id": "96fa31e0-ca76-403f-b075-c6248c1085c9",
-    "version": "1.0.0.0",
+    "version": "1.0.1.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -30,7 +30,7 @@
         "title": "spfx-dynamic-data-sample Feature",
         "description": "The feature that activates elements of the spfx-dynamic-data-sample solution.",
         "id": "f71826e7-7370-4da7-bfeb-98241f1e1862",
-        "version": "1.0.0.0"
+        "version": "1.0.1.0"
       }
     ]
   },
