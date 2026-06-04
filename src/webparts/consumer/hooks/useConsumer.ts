@@ -19,11 +19,11 @@ export function useConsumer(
       return;
     }
 
-    const value = dynamicPropertyValue.tryGetValue();
+    const value = dynamicPropertyValue?.tryGetValue();
     setSelectedProduct(value);
 
     const onPropertyChanged = (): void => {
-      const updated = dynamicPropertyValue.tryGetValue();
+      const updated = dynamicPropertyValue?.tryGetValue();
       setSelectedProduct(updated);
     };
 

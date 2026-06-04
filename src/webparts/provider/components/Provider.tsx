@@ -8,6 +8,7 @@ import { useProducts } from "../../../hooks/useProducts";
 import {
   DetailsList,
   DetailsListLayoutMode,
+  Selection,
   SelectionMode,
   type IColumn,
   Spinner,
@@ -68,6 +69,26 @@ const Provider = ({
     [],
   );
 
+  const selectionRef = React.useRef<Selection | undefined>(undefined);
+
+  const selection = React.useMemo(
+    () =>
+      new Selection({
+        onSelectionChanged: (): void => {
+          const sel = selectionRef.current;
+          if (sel) {
+            const selected = sel.getSelection()[0] as IProduct | undefined;
+            handleProductSelect(selected);
+          }
+        },
+      }),
+    [],
+  );
+
+  React.useEffect(() => {
+    selectionRef.current = selection;
+  }, [selection]);
+
   if (loading) {
     return (
       <Stack
@@ -110,10 +131,8 @@ const Provider = ({
         columns={columns}
         layoutMode={DetailsListLayoutMode.justified}
         selectionMode={SelectionMode.single}
+        selection={selection}
         selectionPreservedOnEmptyClick={true}
-        onItemInvoked={(item: IProduct): void => {
-          handleProductSelect(item);
-        }}
         ariaLabelForGrid="Products list"
         checkButtonAriaLabel="select row"
       />
