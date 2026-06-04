@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { ServiceScope } from "@microsoft/sp-core-library";
 
-import { ProductService } from "../services/ProductService";
-import type { IProduct } from "../models";
+import { ProductService } from "../../../services/ProductService";
+import type { IProduct } from "../../../models";
 
 export interface IUseProductsReturn {
   products: IProduct[];

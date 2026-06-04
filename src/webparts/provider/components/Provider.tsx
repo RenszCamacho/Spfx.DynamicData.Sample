@@ -3,7 +3,7 @@ import * as React from "react";
 import styles from "./Provider.module.scss";
 
 import type { IProviderProps } from "./IProviderProps";
-import { useProducts } from "../../../hooks/useProducts";
+import { useProducts } from "../hooks/useProducts";
 
 import {
   DetailsList,
