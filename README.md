@@ -75,12 +75,15 @@ The `.sppkg` is generated at `sharepoint/solution/spfx-dynamic-data-sample.sppkg
 src/
 ├── constants/       # Centralized magic strings (DYNAMIC_DATA_PROPERTIES, SHAREPOINT_LISTS, COLUMNS)
 ├── sources/         # IDynamicDataCallables methods (getPropertyDefinitions, getPropertyValue, getPropertyById)
-├── hooks/           # Custom React hooks (useProducts, useConsumer)
 ├── models/          # Domain interfaces (IProduct)
 ├── services/        # PnPjs service (ProductService) with ServiceScope DI
 └── webparts/
-    ├── provider/    # Provider web part — exposes data via DynamicData
-    └── consumer/    # Consumer web part — binds to Provider via DynamicProperty
+    ├── provider/
+    │   ├── hooks/   # useProducts (Provider-specific custom hook)
+    │   └── ...
+    └── consumer/
+        ├── hooks/   # useConsumer (Consumer-specific custom hook)
+        └── ...
 ```
 
 ### Key design decisions
